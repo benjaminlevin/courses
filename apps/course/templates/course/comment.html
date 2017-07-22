@@ -1,0 +1,26 @@
+<html>
+  <head>
+    <title>{{course.name}}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'course/css/style.css' %}">
+  </head>
+  <body>
+    <p>Name: {{course.name}}</p>
+    <p>
+        Description:             
+        {% for description in course.description_set.all %}
+        {{description.description}}
+        {% endfor %}
+    </p>
+    <h4>Comments:</h4>
+    {% for comment in comment %}
+        <p>{{comment.comment}}</p>
+    {% endfor %}
+    <form action="/comment/{{course.id}}" method="post">
+      {% csrf_token %}
+      <textarea name="comment" rows="4" cols="40"></textarea>
+      <input type="submit" value="Enter Comment">
+    </form>
+    <a href='/'><button type=''>Return to Courses</button></a>
+  </body>
+</html>

@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <title>Delete {{course.name}}</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'course/css/style.css' %}">
+  </head>
+  <body>
+    <h3>Are you sure you want to delete the following course?</h3>
+    <p>Name: {{course.name}}</p>
+    <p>
+        Description:             
+        {% for description in course.description_set.all %}
+        {{description.description}}
+        {% endfor %}
+    </p>
+    <a href='/'><button type =''>No</button></a>
+    <a href='/delete/{{course.id}}'><button type =''>Yes! I want to delete this</button></a>
+        </tr>
+        </table>
+  </body>
+</html>
